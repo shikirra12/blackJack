@@ -13,25 +13,28 @@
 function handValue (hand) {
   let player = hand;
   let playerHand = 0;
+  let ace = false;
 
   for (var i = 0; i < player.length; i++) {
     if (player[i] === "K" || player[i] === "Q" || player[i] === "J") {
-      playerHand += 10;
-    } else if (playerHand <= 10 && player[i] === "A") {
-      playerHand += 11;
-    } else if (playerHand > 10 && player[i] === "A") {
-      playerHand += 1;
-    } else {
+        playerHand += 10;
+      } else if (player[i] === "A") {
+         playerHand += 11;
+        ace = true;
+      } else {
       playerHand += Number(player[i]);
+    }
+    if (playerHand > 21 && ace === true) {
+      playerHand -= 10;
     }
   }
 
 
-
-
   console.log(playerHand);
   return playerHand;
+
 }
+
 
 
 /* -----  Hints ------
